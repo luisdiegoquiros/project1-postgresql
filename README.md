@@ -1,5 +1,5 @@
 # Project 1
-#Data modeling with PostgreSQL
+# Data modeling with PostgreSQL
 ## Udacity Data Engineering Nanodegree
 
 Create a PostgreSQL database and build an ETL pipeline using Python. The data modeling follows a  star schema optimized for queries on song play analysis. The ETL pipeline transfers data from files in two local directories into the tables.
