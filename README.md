@@ -9,7 +9,7 @@ Create a PostgreSQL database and build an ETL pipeline using Python. The data mo
 
 The star schema has 1 *fact* table (songplays), and 4 *dimension* tables (users, songs, artists, time). `DROP`, `CREATE`, `INSERT`, and `SELECT` queries are defined in **sql_queries.py**. **create_tables.py** uses functions `create_database`, `drop_tables`, and `create_tables` to create the database.
 
-![](images/diagram.png)
+![](diagram.png)
 
 ## Run the project
 
