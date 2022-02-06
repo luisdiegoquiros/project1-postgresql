@@ -43,11 +43,11 @@ CREATE TABLE IF NOT EXISTS songs (
 
 artist_table_create = ("""
 CREATE TABLE IF NOT EXISTS artists (
-    artist_id int PRIMARY KEY,
+    artist_id varchar PRIMARY KEY,
     name text,
     location text,
-    latitude numeric,
-    longitude numeric
+    latitude float,
+    longitude float
 );
 """)
 
