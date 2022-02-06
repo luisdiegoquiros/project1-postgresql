@@ -33,11 +33,11 @@ CREATE TABLE IF NOT EXISTS users (
 
 song_table_create = ("""
 CREATE TABLE IF NOT EXISTS songs (
-    song_id int PRIMARY KEY,
+    song_id varchar PRIMARY KEY,
     title text,
-    artist_id int,
+    artist_id varchar,
     year int,
-    duration numeric
+    duration float
 );
 """)
 
