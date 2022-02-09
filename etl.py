@@ -16,15 +16,12 @@ def process_song_file(cur, filepath):
     # open song file
     df = pd.read_json(filepath, lines=True)
 
-    # insert song record
-    song_data = df[['song_id', 'title', 'artist_id', 'year', 'duration']]
+    # process song data to be inserted
+    song_data = df[['title', 'artist_id', 'year', 'duration']]
     song_data = song_data.values.tolist()
     song_data = song_data[0]
 
-    # run query to insert in the table
-    cur.execute(song_table_insert, song_data)
-
-    # insert artist record
+    # process artist data to be inserted
     artist_data = df[['artist_id',
                       'artist_name',
                       'artist_location',
@@ -33,8 +30,13 @@ def process_song_file(cur, filepath):
     artist_data = artist_data.values.tolist()
     artist_data = artist_data[0]
 
+    # Queries run in order to avoid conflicts with the
+    # foreign keys.
+
     # run query to insert in the table
     cur.execute(artist_table_insert, artist_data)
+    # run query to insert in the table
+    cur.execute(song_table_insert, song_data)
 
 
 def process_log_file(cur, filepath):
@@ -98,10 +100,10 @@ def process_log_file(cur, filepath):
             songid, artistid = results
         else:
             songid, artistid = None, None
+            continue
 
-        # insert songplay record
-        songplay_data = (row.sessionId,
-                         row.ts,
+            # insert songplay record
+        songplay_data = (row.ts,
                          row.userId,
                          row.level,
                          songid,
@@ -109,6 +111,7 @@ def process_log_file(cur, filepath):
                          row.sessionId,
                          row.location,
                          row.userAgent)
+
         cur.execute(songplay_table_insert, songplay_data)
 
 
